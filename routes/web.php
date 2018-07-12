@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -25,3 +27,4 @@ Route::get('/admin', function(){
 });
 
 Route::resource('admin/users', 'AdminUsersController');
+
