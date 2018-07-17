@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class Admin
 {
@@ -23,7 +24,9 @@ class Admin
             }
         }
 
-        return redirect('/home');
+        //Session::flash('no_privilages', 'You dont have privilages to access ');
+        Session::flash('no', 'You dont have privilages to access');
+        return redirect('/admin');
 
 
     }
