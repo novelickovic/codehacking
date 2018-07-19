@@ -17,6 +17,9 @@
     <link href="{{asset('css/libs.css')}}" rel="stylesheet">
 
 
+    @yield('styles')
+
+
     {{--<link rel="stylesheet" type="text/css" href="{‌{ URL::to('css/libs/blog-post.css') }}">--}}
     {{--<link rel="stylesheet" type="text/css" href="{‌{ URL::to('css/libs/bootstrap.css') }}">--}}
     {{--<link rel="stylesheet" type="text/css" href="{‌{ URL::to('css/libs/font-awesome.css') }}">--}}
@@ -180,11 +183,11 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i>Media<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/media">All Media</a>
+                                <a href="{{route('media.index')}}">All Media</a>
                             </li>
 
                             <li>
-                                <a href="">Upload Media</a>
+                                <a href="{{route('media.create')}}">Upload Media</a>
                             </li>
 
                         </ul>
@@ -366,7 +369,7 @@
 {{--<script src="{‌{ URL::to('js/libs/scripts.js') }}"></script>--}}
 
 
-
+@yield('scripts')
 @yield('footer')
 
 
