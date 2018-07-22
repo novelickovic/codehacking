@@ -22,12 +22,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+Route::get('/post/{id}', ['as'=>'home.post', 'uses'=>'AdminPostsController@post']);
+
 Route::get('/admin', function(){
    return view('admin.index');
 });
 
 Route::group(['middleware'=>'admin'], function(){
-
 
     Route::resource('admin/users', 'AdminUsersController');
 
@@ -39,6 +40,21 @@ Route::group(['middleware'=>'admin'], function(){
 
     //Route::get('/admin/media/upload',['as'=>'admin.media.upload', 'uses'=>'AdminMediasController@store'] );
 
+    Route::resource('admin/comments', 'PostCommentsController');
+
+    Route::resource('admin/comments/replies', 'CommentRepliesController');
+
+
+});
+Route::group(['middleware'=>'auth'], function(){
+
+
+    Route::post('comment/reply', 'CommentRepliesController@createReply');
+
+});
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
 

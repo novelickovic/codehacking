@@ -2,6 +2,7 @@
 
 
 @section('content')
+    @include('includes.tinyeditor')
 
     <h1>Edit Post</h1>
 
@@ -44,19 +45,23 @@
 
 
 
-            {{--Delete form--}}
-            {!! Form::open(['method'=>'DELETE', 'action'=>['AdminPostsController@destroy', $post->id]]) !!}
 
-            <div class="form-group">
-                {!! Form::submit('Delete post', ['class'=>'btn btn-danger col-sm-6']) !!}
-            </div>
-
-            {!! Form::close() !!}
 
 
         </div>
 
         {!! Form::close() !!}
+
+
+        {{--Delete form--}}
+        {!! Form::open(['method'=>'DELETE', 'action'=>['AdminPostsController@destroy', $post->id]]) !!}
+
+        <div class="form-group">
+            {!! Form::submit('Delete post', ['class'=>'btn btn-danger col-sm-6']) !!}
+        </div>
+
+        {!! Form::close() !!}
+
 
     </div>
 

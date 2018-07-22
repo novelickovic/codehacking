@@ -20,7 +20,7 @@ class AdminPostsController extends Controller
     {
         //
 
-        $posts = Post::all();
+        $posts = Post::paginate(3);
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -132,7 +132,7 @@ class AdminPostsController extends Controller
 
         }
 
-        Auth::user()->posts()->whereId($id)->first()->update($input);
+        Auth::user()->posts()->where('id',$id)->first()->update($input);
 
         return redirect('/admin/posts');
 
@@ -147,6 +147,7 @@ class AdminPostsController extends Controller
     public function destroy($id)
     {
         //
+
         $post=Post::findOrFail($id);
 
         if ($post->photo_id) {
@@ -157,5 +158,20 @@ class AdminPostsController extends Controller
         $post->delete();
 
         return redirect('/admin/posts');
+    }
+
+
+    public function post($slug){
+
+        $post =Post::findBySlugOrFail($slug);
+
+        $categories = Category::all();
+
+        $comments = $post->comments()->whereIsActive(1)->get();
+
+
+
+        return view('post', compact('post', 'categories', 'comments'));
+
     }
 }
